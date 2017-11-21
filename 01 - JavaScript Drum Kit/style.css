@@ -1,6 +1,6 @@
 html {
   font-size: 10px;
-  background: url(http://i.imgur.com/b9r5sEL.jpg) bottom center;
+  background: url(http://rwdmag.com/wp-content/uploads/2014/09/16155369e0b0b274b5c6a220310c6878066c48ad.jpg) top center;
   background-size: cover;
 }
 body,html {
@@ -33,8 +33,8 @@ body,html {
 
 .playing {
   transform: scale(1.1);
-  border-color: #ffc600;
-  box-shadow: 0 0 1rem #ffc600;
+  border-color: #73d7f3;
+  box-shadow: 0 0 1rem #73d7f3;
 }
 
 kbd {
@@ -46,5 +46,5 @@ kbd {
   font-size: 1.2rem;
   text-transform: uppercase;
   letter-spacing: .1rem;
-  color: #ffc600;
+  color: #73d7f3;
 }

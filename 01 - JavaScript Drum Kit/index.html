@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Neptunes Drum Kit</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+  <div class="keys">
+    <div data-key="65" class="key">
+      <kbd>A</kbd>
+      <span class="sound">clap</span>
+    </div>
+    <div data-key="83" class="key">
+      <kbd>S</kbd>
+      <span class="sound">hihat</span>
+    </div>
+    <div data-key="68" class="key">
+      <kbd>D</kbd>
+      <span class="sound">kick</span>
+    </div>
+    <div data-key="70" class="key">
+      <kbd>F</kbd>
+      <span class="sound">openhat</span>
+    </div>
+    <div data-key="71" class="key">
+      <kbd>G</kbd>
+      <span class="sound">grinding</span>
+    </div>
+    <div data-key="72" class="key">
+      <kbd>H</kbd>
+      <span class="sound">rockstar</span>
+    </div>
+    <div data-key="74" class="key">
+      <kbd>J</kbd>
+      <span class="sound">snare</span>
+    </div>
+    <div data-key="75" class="key">
+      <kbd>K</kbd>
+      <span class="sound">kick2</span>
+    </div>
+    <div data-key="76" class="key">
+      <kbd>L</kbd>
+      <span class="sound">bass</span>
+    </div>
+  </div>
+
+  <audio data-key="65" src="sounds/clap.wav"></audio>
+  <audio data-key="83" src="sounds/neptunes-hat.wav"></audio>
+  <audio data-key="68" src="sounds/neptunes-kick.wav"></audio>
+  <audio data-key="70" src="sounds/openhat.wav"></audio>
+  <audio data-key="71" src="sounds/neptunes-grinding-kick.wav"></audio>
+  <audio data-key="72" src="sounds/rockstar.wav"></audio>
+  <audio data-key="74" src="sounds/neptunes-snare.wav"></audio>
+  <audio data-key="75" src="sounds/neptunes-kick2.wav"></audio>
+  <audio data-key="76" src="sounds/neptunes-bass.wav"></audio>
+
+<script>
+  window.addEventListener('keydown', function(e) {
+
+    function initNeptunesKit(e) {
+      const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+      const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+      if(!audio) return; // stops function 
+      audio.currentTime = 0; // rewind to the start
+      audio.play();
+      
+      console.log(e)
+      // Adds the class of '.playing' to the DOM
+      key.classList.add('playing')
+    }
+
+    function removeTransition(e) {
+      if (e.propertyName !== 'transform') return; // skip it if it's not a transform
+
+      // this == key
+      this.classList.remove('playing');
+    }
+    
+   /**
+     * The addEventListener() method attaches an event handler to the specified element
+     * You can add event listeners to any DOM object not only HTML elements (i.e. the window object)
+     * 
+     * @example: element.addEventListener(event, function, useCapture);
+     *
+     * The first parameter is the type of event (like 'click' or 'mousedown').
+     * The second parameter is the function we want to call when the event occurs.
+     * The third parameter is a boolean value specifying whether to use event bubbling or event capturing. This parameter is optional.
+    *
+   */
+
+    // Listen to transition event 
+    const keys = document.querySelectorAll('.key');
+    keys.forEach(key => key.addEventListener('transitionend', removeTransition))
+
+    window.addEventListener('keydown', initNeptunesKit);
+  });
+
+</script>
+
+
+</body>
+</html>
